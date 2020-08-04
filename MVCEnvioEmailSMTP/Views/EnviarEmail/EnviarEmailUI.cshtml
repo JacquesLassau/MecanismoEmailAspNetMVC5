@@ -1,0 +1,29 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+<br />
+@using (Html.BeginForm("EnviarEmailAR", "EnviarEmail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label for="lblEmail">Endereço de Email:</label>
+        <input type="email" class="form-control" name="txtEmail" aria-describedby="Este é o email do rementente" required="required">        
+    </div>
+    <div class="form-group">
+        <label for="lblAssunto">Assunto:</label>
+        <input type="text" class="form-control form-control-lg" name="txtAssunto" aria-describedby="Defina um assunto" required="required">
+    </div>
+    <div class="form-group">
+        <label for="lblMensagem">Mensagem:</label>
+        <textarea class="form-control form-control-lg" name="txtMensagem" rows="3" required="required"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="flAnexo">Enviar anexo:</label>
+        <input type="file" class="form-control-file form-control-lg" name="flAnexo">
+    </div>
+    <hr />
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Enviar</button>
+        <button type="reset" class="btn btn-danger">Limpar</button>
+    </div>    
+}
+
+
+
