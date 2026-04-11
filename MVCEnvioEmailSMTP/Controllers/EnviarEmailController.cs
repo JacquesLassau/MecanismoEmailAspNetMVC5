@@ -35,27 +35,18 @@ namespace MVCEnvioEmailSMTP.Controllers
                         flAnexo.SaveAs(rota + "\\" + flAnexo.FileName);
                         Attachment anexo = new Attachment(rota + "\\" + flAnexo.FileName);
                         mailMessage.Attachments.Add(anexo);
-                    }
-
-                    /*
-                     ** Cada serviço de e-mail contém sua configuração própria:
-                     ** ------------------------------------------------------- 
-                     ** smtp.gmail.com
-                     ** smtp.live.com
-                     ** smtp.yahoo.com
-                     ** -------------------------------------------------------
-                     */
-
+                    } 
+                    
+                    // Cada serviço de e-mail contém sua configuração própria:                     
                     SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
                     smtpClient.Port = 587;
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtpClient.EnableSsl = true;
                     smtpClient.UseDefaultCredentials = false;
-                                        
-                    System.Net.NetworkCredential credencial = new System.Net.NetworkCredential("emailCredenciais@email.com", "5enh@8mai1%redenciais");
-                    smtpClient.Credentials = credencial;
 
-                    // Mecanismo que identifica as credencias com certificado SSL
+                    // Mecanismo que identifica/comunica as credencias com/sem certificado SSL
+                    System.Net.NetworkCredential credencial = new System.Net.NetworkCredential("emailCredenciais@email.com", "5enh@8mai1%redenciais");
+                    smtpClient.Credentials = credencial;                    
                     System.Net.ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
                     smtpClient.Send(mailMessage);
